@@ -22,3 +22,8 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 start = "app.main:app"
+
+[tool.pytest.ini_options]
+pythonpath = [
+    "."
+]
