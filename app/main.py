@@ -1,7 +1,7 @@
 import http
 import os
 
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, Depends, HTTPException
 from pydantic import BaseModel
 
 from app.repo import book_repo, book
@@ -41,3 +41,7 @@ async def create_book(bb: BaseBook, repo = Depends(create_repo)):
     repo.create(b)
 
     return bb
+
+@app.get("/book/{isbn}")
+async def get_book(isbn: str):
+    raise HTTPException(status_code=http.HTTPStatus.NOT_FOUND, detail={"message": "No book with isbn " + isbn})
